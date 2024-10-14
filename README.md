@@ -76,12 +76,12 @@ To enable DHCP services, uncomment the following ports in the `docker-compose.ym
 # - "68:68"      # DHCP Port
 # - "68:68/udp"  # DHCP Ports
 ```
-```
 
 ### Stop the Service
 
 To stop the AdGuard container:
-```
+
+```bash
 docker compose down
 ```
 
