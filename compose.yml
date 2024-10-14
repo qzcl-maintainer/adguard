@@ -1,0 +1,58 @@
+# Docker Compose Template - AdGuard
+# Author: QZCL Maintainer <maintainer@qzconsultancy.com>
+# Git Repo: https://github.com/qzcl-maintainer/adguard
+# Created: 14-Oct-2024
+# Purpose: To spin up an AdGuard Docker Container with DNS & DHCP services.
+#
+# References:
+#   1. https://docs.docker.com/reference/compose-file/version-and-name/
+#   2. https://hub.docker.com/r/adguard/adguardhome
+
+# Specify the Version of your compose file, i.e. v0.1
+version: "1"
+name: adguard
+
+services:
+  # Specify the name of your service
+  app:
+    # Name the container explicitly
+    container_name: adguard
+    # Set a custom hostname
+    hostname: adguard
+    # Use the official AdGuard image
+    image: adguard/adguardhome
+    # Map ports from the host to the container
+    ports:
+      - "80:80"
+      - "443:443"
+      - "3000:3000"
+      - "53:53" # DNS Port
+      - "53:53/udp" # DNS Port
+      # - "67:67/udp" # DHCP Port
+      # - "68:68" # DHCP Port
+      # - "68:68/udp" # DHCP Port
+      - "853:853" # DNS-over-TLS Port
+      - "784:784/udp" # DNS-over-QUIC
+      - "853:853/udp" # DNS-over-QUIC
+      - "8853:8853/udp" # DNS-over-QUIC
+      - "5443:5443" # DNSCrypt Port
+      - "5443:5443/udp" # DNSCrypt Port
+    # Define mounted volumes (for persistent data storage or custom configuration)
+    volumes:
+      - ./work:/opt/adguardhome/work
+      - ./conf:/opt/adguardhome/conf
+    # Automatically restart the container if it stops or crashes
+    restart: unless-stopped
+    # Define Network Configuration
+    networks:
+      - adguard-net
+
+
+networks:
+  adguard-net:
+    driver: host
+    # driver: bridge
+
+# Check the config file by running `docker compose config`
+# Start by running `docker compose up --detach`
+# End of Compose File
