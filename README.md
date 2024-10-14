@@ -1,6 +1,3 @@
-# adguard
-A Docker Compose Template for AdGuard
-
 # AdGuard Docker Compose Setup
 
 This repository provides a Docker Compose configuration for spinning up an AdGuard container with DNS & DHCP services. AdGuard acts as an effective blocklist manager for ads, trackers, and other unwanted web elements.
@@ -78,17 +75,20 @@ To enable DHCP services, uncomment the following ports in the `docker-compose.ym
 # - "67:67/udp"  # DHCP Port
 # - "68:68"      # DHCP Port
 # - "68:68/udp"  # DHCP Ports
+```
+```
 
 ### Stop the Service
 
 To stop the AdGuard container:
-
 ```
 docker compose down
 ```
-```
 
 This `README.md` provides a clear overview of the Docker Compose setup for the AdGuard container. It includes project details, a description of services and networks, instructions for running the container, and optional DHCP setup.
-```
-```
-```
+
+
+### References:
+1. [Docker Compose File Reference](https://docs.docker.com/reference/compose-file/version-and-name/)
+2. [AdGuard Docker Hub Page](https://hub.docker.com/r/adguard/adguardhome)
+
